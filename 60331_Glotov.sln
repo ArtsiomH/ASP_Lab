@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "60331_Glotov", "60331_Glotov\60331_Glotov.csproj", "{D64AAB97-8A65-4169-B457-588BFBC01046}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "60331_Glotov.Tests", "60331_Glotov.Tests\60331_Glotov.Tests.csproj", "{5E2D3069-2C8A-41A4-9FD0-7706ED8CD6A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "60331_Glotov.DAL", "60331_Glotov.DAL\60331_Glotov.DAL.csproj", "{188264B5-AD2F-456E-AC4D-C1E592ACFFF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D64AAB97-8A65-4169-B457-588BFBC01046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D64AAB97-8A65-4169-B457-588BFBC01046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D64AAB97-8A65-4169-B457-588BFBC01046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D64AAB97-8A65-4169-B457-588BFBC01046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E2D3069-2C8A-41A4-9FD0-7706ED8CD6A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E2D3069-2C8A-41A4-9FD0-7706ED8CD6A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E2D3069-2C8A-41A4-9FD0-7706ED8CD6A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E2D3069-2C8A-41A4-9FD0-7706ED8CD6A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{188264B5-AD2F-456E-AC4D-C1E592ACFFF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{188264B5-AD2F-456E-AC4D-C1E592ACFFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{188264B5-AD2F-456E-AC4D-C1E592ACFFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{188264B5-AD2F-456E-AC4D-C1E592ACFFF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,38 @@
+﻿@using _60331_Glotov.DAL
+@model _60331_Glotov.Models.PageListViewModel<Book>
+@using System.Text
+
+@{ 
+    //объект для "собирания" разметки
+    StringBuilder result = new StringBuilder();
+    //счетчик эскизов в строке
+    int i = 0;
+    TagBuilder row = new TagBuilder("div");
+
+    foreach(Book book in Model)
+    {
+        i++;
+        if (i == 1)
+        {
+            row = new TagBuilder("div");
+            row.AddCssClass("row");
+            row.AddCssClass("item-row");
+        }
+
+        row.InnerHtml += Html.Partial("ItemViewPartial", book);
+
+        if (i == 3)
+        {
+            result.Append(row.ToString());
+            i = 0;
+        }
+    }
+
+    if (i != 3 && i != 0)
+    {
+        result.Append(row.ToString());
+    }
+}
+
+@MvcHtmlString.Create(result.ToString())
+@Html.Partial("PagerPartial", Model)

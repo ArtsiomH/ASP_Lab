@@ -1,0 +1,98 @@
+﻿@using _60331_Glotov.DAL;
+@model _60331_Glotov.Models.PageListViewModel<Book>
+@using System.Text;
+
+@{ 
+    object categoryName = Request.RequestContext.RouteData.Values["category"];
+
+    StringBuilder result = new StringBuilder();
+
+
+    // стрелка влево
+    TagBuilder liPrevNext = new TagBuilder("li");
+    //liPrevNext.InnerHtml = Html.ActionLink("<<", "List", new { page = Model.CurrentPage - 1 }).ToString();
+    liPrevNext.InnerHtml = Ajax.ActionLink("<<", "List",
+            new {
+                category = categoryName,
+                page = Model.CurrentPage - 1
+            },
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "List"
+            }).ToString();
+
+
+    if (Model.CurrentPage == 1)
+    {
+        //liPrevNext.InnerHtml = Html.ActionLink("<<", "List",
+        //    new { category = categoryName, page = 1 },
+        //    new { onclick = "javascript:return false;" }).ToString();
+        liPrevNext.AddCssClass("disabled");
+    }
+    //else
+    //{
+    //    liPrevNext.InnerHtml = Html.ActionLink("<<", "List",
+    //        new { category = categoryName, page = Model.CurrentPage - 1 },
+    //        new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "List" }).ToString();
+    //}
+
+    result.Append(liPrevNext.ToString());
+
+    // пейджер
+    for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        TagBuilder li = new TagBuilder("li");
+        li.InnerHtml = Ajax.RouteLink(i.ToString(),
+                                      new
+                                      {
+                                          action = "List",
+                                          category = categoryName,
+                                          page = i
+                                      },
+                                      new AjaxOptions
+                                      {
+                                          UpdateTargetId = "List",
+                                          InsertionMode = InsertionMode.Replace                                          
+                                      }).ToString();
+        if (i == Model.CurrentPage)
+        {
+            li.AddCssClass("active");
+        }
+        result.Append(li.ToString());
+    }
+
+    // стрелка вправо
+    liPrevNext = new TagBuilder("li");
+    //liPrevNext.InnerHtml = Html.ActionLink(">>", "List", new { page = Model.CurrentPage + 1 }).ToString();
+
+    liPrevNext.InnerHtml = Ajax.ActionLink(">>", "List",
+                                            new
+                                            {
+                                                category = categoryName,
+                                                page = Model.CurrentPage + 1
+                                            },
+                                            new AjaxOptions
+                                            {
+                                                InsertionMode = InsertionMode.Replace,
+                                                UpdateTargetId = "List"
+                                            }).ToString();
+
+    if (Model.CurrentPage == Model.TotalPages)
+    {
+        //liPrevNext.InnerHtml = Html.ActionLink(">>", "List", new { category = categoryName, page = Model.CurrentPage }, new { onclick = "javascript:return false;" }).ToString();
+        liPrevNext.AddCssClass("disabled");
+    }
+    //else
+    //{
+    //    liPrevNext.InnerHtml = Html.ActionLink(">>", "List", new { category = categoryName, page = Model.CurrentPage + 1 }).ToString();
+    //}
+
+    result.Append(liPrevNext.ToString());
+}
+
+<div class="centered">
+    <ul class="pagination">
+        @MvcHtmlString.Create(result.ToString())
+    </ul>
+</div>

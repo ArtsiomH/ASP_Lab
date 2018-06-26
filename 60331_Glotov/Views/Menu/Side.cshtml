@@ -1,0 +1,33 @@
+﻿@model IEnumerable<string>
+
+<!-- получение названия текущей категории из запроса -->
+@{ 
+    object txt = Request.RequestContext.RouteData.Values["category"] ?? "Все категории";
+}
+
+<h3>Выберите категорию</h3>
+<div class="btn-group">
+    <button type="button" class="btn btn-default">@txt</button>
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <!--первый элемент списка-->
+        <li>
+            <a href="@Url.Action("List", "Book")">
+                Все категории
+            </a>
+        </li>
+        <!--формирование остального списка-->
+        @{ 
+            foreach (string item  in Model)
+            {
+                <li>
+                    <a href="@Url.Action("List", "Book", new { category = item })">
+                        @item
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</div>

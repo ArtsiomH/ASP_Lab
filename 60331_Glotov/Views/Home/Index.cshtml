@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Главная страница";
+    SelectList Colors = new SelectList(Enum.GetValues(typeof(System.Drawing.KnownColor)));
+    ViewBag.Colors = Colors;
+    ViewBag.MyText = Request.QueryString["Colors"] ?? "Лабораторная работа №2";
+}
+
+@section SidePanel
+{
+    <div class="alert-success"> 
+        <h4><i>Пример работы с секциями на странице шаблона</i></h4> 
+    </div>  
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Список</h2>
+        <ol type="A">
+            @for (int i = 1; i < 5; i++)
+            {
+                <li>элемент @i списка</li>
+            }
+        </ol>
+        <hr />
+        <h2>Форма</h2>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    <div>
+                        @Html.DropDownList("Colors")
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBox("checkBox1")<b>Чек-бокс 1</b>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBox("checkBox2")<b>Чек-бокс 2</b>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label class="radio-inline">
+                            @Html.RadioButton("rButton", 1, true)<b>Радио-1</b>
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButton("rButton", 2, false)<b>Радио-2</b>
+                        </label>
+                    </div>
+                </div>
+            </div>
+                <br />
+                <div class="form-group">
+                    <label for="inputLogin" class="col-md-2 control-label">Логин:</label>
+                    <div class="col-md-8">
+                        @Html.TextBox("login", null, new { @class = "form-control", placeholder = "Введите логин" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-md-2 control-label">Пароль:</label>
+                    <div class="col-md-8">
+                        @Html.Password("password", null, new { @class = "form-control", placeholder = "Введите пароль" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-2">
+                        <button type="submit" class="btn btn-default">Отправить</button>
+                    </div>
+                </div>
+        }
+    </div>
+</div>
+
+
+

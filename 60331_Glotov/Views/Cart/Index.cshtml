@@ -1,0 +1,31 @@
+﻿@model _60331_Glotov.Models.Cart
+@using _60331_Glotov.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ваша корзина</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Количество</th>
+            <th>Cтоимость</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CartItem cartItem in Model.GetItems())
+        {
+            <tr>
+                <td>@cartItem.Book.BookName</td>
+                <td>@cartItem.Quantity</td>
+                <td>@(cartItem.Book.Price * cartItem.Quantity)</td>
+                <td>
+                    @Html.ActionLink("Удалить", "DeleteFromCart", new { id = cartItem.Book.BookId, returnUrl = TempData["returnUrl"].ToString() })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="@TempData["returnUrl"]" class="btn btn-default">Вернуться к меню</a>

@@ -1,0 +1,128 @@
+﻿@model _60331_Glotov.Models.PageListViewModel<_60331_Glotov.DAL.Book>
+@using System.Text;
+@using _60331_Glotov.DAL;
+
+
+@{
+    ViewBag.Title = "List";
+    
+    if (TempData["addedBook"] != null)
+    {
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script type="text/javascript">
+
+            $(function () {
+                $('#modDialog').modal('show');
+            })
+
+        </script>
+    }
+}
+
+
+
+<div id="modDialog" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Добавление элемента</h4>
+            </div>
+            <div class="modal-body">
+                <label class="text-center">Объект "@TempData["addedBook"]" добавлен</label>
+                <hr />
+                <button type="button" class="btn btn-default" data-dissmiss="modal" onclick="$('#modDialog').modal('hide')">Ок</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Список книг</h2>
+<div id="List">
+    @Html.Partial("ListPartial", Model)
+</div>
+
+@section SidePanel
+{
+    @Html.Action("Side", "Menu")
+}
+
+@*@{ 
+    //объект для собирания разметки
+    StringBuilder result = new StringBuilder();
+    //счетчик эскизов
+    int i = 0;
+    TagBuilder row = new TagBuilder("div");
+
+    foreach (Book book in Model)
+    {
+        i++;
+        if (i == 1)
+        {
+            row = new TagBuilder("div");
+            row.AddCssClass("row");
+            row.AddCssClass("item-row");
+        }
+
+        row.InnerHtml += Html.Partial("ItemViewPartial", book);
+
+        if (i == 3)
+        {
+            result.Append(row.ToString());
+            i = 0;
+        }
+    }
+
+    if (i != 3 && i != 0)
+    {
+        result.Append(row.ToString());
+    }
+}
+
+
+@MvcHtmlString.Create(result.ToString())
+
+@Html.Partial("PagerPartial", Model)*@
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookId })
+        </td>
+    </tr>
+}
+
+</table>*@

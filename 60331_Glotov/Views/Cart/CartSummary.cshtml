@@ -1,0 +1,8 @@
+﻿@model _60331_Glotov.Models.Cart
+
+@{
+    ViewBag.Title = "CartSummary";
+}
+
+<a href="@Url.Action("Index", "Cart", new { returnUrl = Request.Path })">@Model.GetTotal() руб. ( @Model.GetItems().Sum(x => x.Quantity) )<span class="glyphicon glyphicon-shopping-cart"></span></a>
+

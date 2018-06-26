@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>    
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/bundles/styles")
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div class="header-strip">
+        <!--Заголовок страницы-->
+        <div class="container">
+            <!--Панель аутентификации-->
+            @Html.Action("UserInfo", "Menu")
+        </div> <!--Панель аутентификации (конец)-->
+        <div class="container">
+            <!--Панель навигации-->
+            <div class="navbar navbar-inverse" role="navigation">
+                <div class="logo">
+                    <a class="navbar-brand" href="Home/Index">GLOTOV</a>
+                </div>
+                @Html.Action("Main", "Menu", new { c = Request.RequestContext.RouteData.Values["controller"]})
+            </div>
+        </div> <!--Панель навигации (конец)-->
+    </div> <!--Заголовок страницы (конец)-->
+
+    <div class="main-body">
+        <!--Содержимое сайта-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-3">
+                    <h2>@ViewBag.MyText</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><!--Левая боковая панель-->
+                    @RenderSection("SidePanel", required: false)
+                </div><!--Левая боковая панель (конец)-->
+                <div class="col-md-9"><!--Основная панель-->                  
+                    @RenderBody()
+                </div><!--Основная панель (конец)-->
+            </div>
+        </div>
+    </div> <!--Содержимое сайта (конец)-->
+    <div class="footer-strip"> <!--Подвал сайта-->       
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.Action("Map", "Menu")                    
+                </div>
+                <div class="col-md-3 col-md-offset-6">
+                    <h6>Социальные сети</h6>
+                    <a href="http://vk.com" class="social-icon vk"></a>
+                    <a href="http://twitter.com" class="social-icon twitter"></a>
+                    <a href="http://facebook.com" class="social-icon facebook"></a>
+                </div>
+            </div>
+        </div>
+    </div><!--Подвал сайта (конец)-->
+    
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("Scripts", false)
+</body>
+</html>
